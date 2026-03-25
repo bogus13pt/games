@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Games — Complete Collection Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Teko:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #080c10;
+  --bg2:       #0a0f15;
+  --surface:   rgba(12,18,28,0.92);
+  --surface2:  rgba(16,24,38,0.95);
+  --blue:      #107c10;  /* Xbox green as primary */
+  --accent:    #52b043;
+  --accent2:   #76d167;
+  --gold:      #f0a500;
+  --red:       #e63946;
+  --white:     #e8f0f8;
+  --muted:     #3a5068;
+  --muted2:    #6a8aaa;
+  --border:    rgba(82,176,67,0.14);
+  --border2:   rgba(82,176,67,0.30);
+  --glow:      rgba(82,176,67,0.08);
+  --green:     #52b043;
+  --radius:    10px;
+  --card-w:    170px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;
+  min-height:100vh;
+  padding-bottom:80px;
+  -webkit-font-smoothing:antialiased;
+}
+/* scanlines */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px);
+  pointer-events:none;z-index:0;
+}
+/* circuit pattern */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(82,176,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(82,176,67,0.03) 1px, transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;z-index:0;
+}
+
+/* ── HEADER ── */
+header{
+  position:relative;z-index:1;
+  text-align:center;overflow:hidden;
+  border-bottom:2px solid var(--border2);
+  box-shadow:0 4px 50px rgba(82,176,67,0.18);
+}
+.hbg{
+  position:absolute;inset:0;
+  background:linear-gradient(170deg,#04080c 0%,#060d14 45%,#080c10 100%);
+  z-index:0;
+}
+.hbg::before{
+  content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  width:700px;height:400px;
+  background:radial-gradient(ellipse,rgba(82,176,67,0.12) 0%,transparent 70%);
+}
+.hbg::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--accent) 30%,var(--accent2) 50%,var(--accent) 70%,transparent);
+}
+.xbox-logo{
+  position:relative;z-index:1;display:block;
+  margin:0 auto;padding-top:40px;
+  width:90px;height:90px;
+  filter:drop-shadow(0 0 24px rgba(82,176,67,0.65));
+}
+.hcontent{position:relative;z-index:1;padding:8px 24px 40px;}
+.eyebrow{
+  font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:9px;text-transform:uppercase;color:var(--accent);
+  margin-bottom:8px;text-shadow:0 0 20px rgba(82,176,67,0.5);
+}
+h1{
+  font-family:'Teko',sans-serif;font-size:clamp(3.5rem,11vw,7rem);
+  letter-spacing:6px;line-height:.88;color:var(--white);
+  text-shadow:0 0 50px rgba(82,176,67,0.25),0 2px 0 rgba(0,0,0,0.6);
+}
+h1 span{
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 50%,#9de88d 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.tagline{
+  font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-top:10px;
+}
+.tagline strong{color:var(--accent);font-weight:700;}
+.stats{
+  display:flex;justify-content:center;gap:0;
+  margin:26px auto 0;max-width:540px;
+  border:1px solid var(--border2);border-radius:4px;overflow:hidden;
+  background:rgba(4,8,12,0.8);backdrop-filter:blur(12px);
+  clip-path:polygon(14px 0%,100% 0%,calc(100% - 14px) 100%,0% 100%);
+}
+.stat{flex:1;padding:15px 12px;text-align:center;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-val{
+  font-family:'Teko',sans-serif;font-size:2.1rem;letter-spacing:2px;
+  color:var(--accent);line-height:1;text-shadow:0 0 20px rgba(82,176,67,0.4);
+}
+.stat-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+
+/* ── CONTROLS ── */
+.controls{position:relative;z-index:1;max-width:1320px;margin:30px auto 0;padding:0 20px;}
+.search-wrap{position:relative;margin-bottom:14px;}
+.sico{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none;}
+input[type="text"]{
+  width:100%;background:rgba(4,8,12,0.85);
+  border:1px solid var(--border2);border-radius:4px;
+  color:var(--white);font-family:'Rajdhani',sans-serif;
+  font-size:16px;font-weight:600;letter-spacing:1px;
+  padding:13px 18px 13px 48px;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+}
+input[type="text"]:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(82,176,67,0.15);}
+input[type="text"]::placeholder{color:var(--muted);}
+.frow{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;align-items:center;}
+.flbl{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-right:4px;white-space:nowrap;}
+.fbtn{
+  background:rgba(4,8,12,0.7);border:1px solid var(--border2);border-radius:2px;
+  color:var(--muted2);cursor:pointer;font-family:'Rajdhani',sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 14px;transition:all .15s;white-space:nowrap;
+  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+}
+.fbtn:hover{background:rgba(82,176,67,0.08);color:var(--white);border-color:var(--accent);}
+.fbtn.active{color:#000;border-color:transparent;}
+.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:10px;}
+.opill{
+  background:rgba(82,176,67,0.1);border:1px solid rgba(82,176,67,0.35);
+  border-radius:3px;padding:7px 14px;font-size:12px;font-weight:700;
+  color:var(--accent);font-family:'Rajdhani',sans-serif;letter-spacing:1px;text-transform:uppercase;
+}
+.cpill{font-size:12px;color:var(--muted2);font-family:'Rajdhani',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+.vtog{display:flex;gap:4px;}
+.vbtn{
+  background:rgba(4,8,12,0.85);border:1px solid var(--border2);border-radius:3px;
+  color:var(--muted);cursor:pointer;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .15s;
+}
+.vbtn.active{background:var(--accent);border-color:var(--accent);color:#000;box-shadow:0 0 12px rgba(82,176,67,0.4);}
+
+/* ── SECTION LABEL ── */
+.slabel{
+  position:relative;z-index:1;max-width:1320px;margin:34px auto 16px;
+  padding:0 20px;display:flex;align-items:center;gap:16px;
+}
+.slabel-inner{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface2);border:1.5px solid var(--border2);
+  border-radius:6px;padding:7px 18px;white-space:nowrap;
+  box-shadow:0 2px 14px rgba(0,0,0,0.4);
+}
+.sdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.stxt{font-family:'Teko',sans-serif;font-size:17px;letter-spacing:4px;text-transform:uppercase;}
+.scnt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.slabel::before,.slabel::after{content:'';flex:1;height:1px;}
+.slabel::before{background:linear-gradient(90deg,transparent,var(--border2));}
+.slabel::after{background:linear-gradient(90deg,var(--border2),transparent);}
+
+/* ── YEAR SUBLABEL ── */
+.ylbl{
+  position:relative;z-index:1;max-width:1320px;margin:18px auto 10px;
+  padding:0 20px 0 28px;font-family:'Rajdhani',sans-serif;font-size:10px;
+  font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:10px;
+}
+.ylbl::after{content:'';flex:1;height:1px;background:rgba(82,176,67,0.07);}
+
+/* ── GRID ── */
+.grid{
+  position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:0 20px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--card-w),1fr));gap:12px;
+}
+.grid.lv{grid-template-columns:1fr;}
+
+/* ── CARD ── */
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;position:relative;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  animation:rise .32s ease both;backdrop-filter:blur(4px);
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  opacity:0;transition:opacity .2s;z-index:3;
+}
+.card:hover{transform:translateY(-5px);}
+.card:hover::before{opacity:1;}
+.card.owned{border-color:rgba(82,176,67,0.45);background:rgba(10,16,24,0.98);}
+.card.owned::before{background:linear-gradient(90deg,transparent,var(--accent2),transparent);opacity:1;}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.cimg{
+  height:220px;background:#040810;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.cimg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(4,8,16,0.5) 100%);
+  pointer-events:none;z-index:2;
+}
+.cimg img{
+  width:100%;height:100%;object-fit:cover;object-position:top;
+  transition:transform .35s;position:relative;z-index:1;
+}
+.card:hover .cimg img{transform:scale(1.06);}
+.phdr{
+  width:100%;height:100%;flex-direction:column;align-items:center;
+  justify-content:center;gap:8px;padding:16px;display:none;position:relative;z-index:1;
+}
+.phnum{font-family:'Teko',sans-serif;font-size:2.5rem;letter-spacing:2px;opacity:.9;}
+.phnm{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-align:center;opacity:.35;line-height:1.3;}
+
+/* badges */
+.fbadge{
+  position:absolute;top:8px;left:8px;z-index:4;
+  font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;padding:3px 10px;
+  border-radius:2px;color:#000;white-space:nowrap;
+  clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);
+}
+.pbadge{
+  position:absolute;top:8px;right:40px;z-index:4;
+  font-family:'Rajdhani',sans-serif;font-size:8px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;
+  border-radius:2px;white-space:nowrap;
+}
+.obtn{
+  position:absolute;top:8px;right:8px;width:28px;height:28px;
+  border-radius:50%;border:1.5px solid rgba(82,176,67,.3);
+  background:rgba(4,8,16,.75);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:rgba(82,176,67,.3);
+  transition:all .15s;user-select:none;z-index:4;backdrop-filter:blur(4px);
+}
+.obtn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 10px rgba(82,176,67,.3);}
+.obtn.owned{background:var(--accent);border-color:var(--accent);color:#000;box-shadow:0 0 12px rgba(82,176,67,.4);}
+
+.cbody{padding:11px 13px 14px;}
+.cyear{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--accent);margin-bottom:3px;text-transform:uppercase;opacity:.75;}
+.cname{font-family:'Teko',sans-serif;font-size:18px;letter-spacing:.5px;color:var(--white);line-height:1.15;margin-bottom:7px;}
+.ctags{display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
+.ptag{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;}
+.etag{font-size:10px;color:var(--muted2);}
+.etag::before{content:'★ ';color:var(--gold);font-size:9px;}
+
+/* list view */
+.grid.lv .card{display:flex;flex-direction:row;align-items:center;}
+.grid.lv .cimg{width:72px;height:96px;flex-shrink:0;border-radius:0;}
+.grid.lv .cimg img{object-position:center;}
+.grid.lv .cbody{flex:1;padding:10px 14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.grid.lv .cname{margin-bottom:0;font-size:16px;}
+.grid.lv .cimg::after{display:none;}
+.grid.lv .fbadge{top:5px;left:5px;font-size:8px;padding:2px 7px;}
+.grid.lv .obtn{top:5px;right:5px;}
+
+/* empty */
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted);}
+.empty-ico{font-size:3rem;margin-bottom:16px;opacity:.25;}
+.empty p{font-family:'Teko',sans-serif;font-size:22px;letter-spacing:2px;}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+@media(max-width:480px){:root{--card-w:145px}h1{font-size:3rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbg"></div>
+  <svg class="xbox-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(82,176,67,0.35)" stroke-width="2"/>
+    <circle cx="50" cy="50" r="42" fill="#107c10"/>
+    <path d="M24 30 C30 22, 42 20, 50 28 C58 20, 70 22, 76 30 C86 44, 82 64, 68 76 C61 82, 56 80, 50 74 C44 80, 39 82, 32 76 C18 64, 14 44, 24 30 Z" fill="#52b043"/>
+    <path d="M35 38 L50 55 L65 38 M35 65 L50 48 L65 65" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="hcontent">
+    <div class="eyebrow">Physical Games · Complete Collection Tracker</div>
+    <h1><span>WAR CHEST</span></h1>
+    <p class="tagline">Every physical release — <strong id="totalCount">…</strong> titles across 5 franchises</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-val" id="statOwned">0</div><div class="stat-lbl">Owned</div></div>
+      <div class="stat"><div class="stat-val" id="statTotal">0</div><div class="stat-lbl">Total</div></div>
+      <div class="stat"><div class="stat-val" id="statPct">0%</div><div class="stat-lbl">Complete</div></div>
+      <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">Franchises</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="sico">⌕</span>
+    <input type="text" id="search" placeholder="Search title, platform, year…" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="frow">
+    <span class="flbl">Franchise</span>
+    <div id="fFilters"></div>
+  </div>
+  <div class="frow">
+    <span class="flbl">Platform</span>
+    <div id="pFilters"></div>
+  </div>
+  <div class="toolbar">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div class="opill" id="ownedCount">✓ 0 owned</div>
+      <div class="cpill" id="countPill">Showing 0 items</div>
+    </div>
+    <div class="vtog">
+      <button class="vbtn active" id="gvBtn" title="Grid" onclick="setView('grid')">⊞</button>
+      <button class="vbtn" id="lvBtn" title="List" onclick="setView('list')">☰</button>
+    </div>
+  </div>
+</div>
+
+<div id="output"></div>
+
+<script>
+/* ─────────────────────────────────────────────
+   GAME DATABASE
+   img: prefer Xbox cover art URLs from OpenCritic/Giant Bomb CDN or placeholder
+   Platforms: XB=Xbox Original, X360=Xbox 360, XBO=Xbox One, XSX=Xbox Series X,
+              PS1=PlayStation, PS2, PS3, PS4, PS5, PC=Windows Boxed, 
+              GCN=GameCube, Wii, WiiU=Wii U, NSW=Nintendo Switch,
+              GBA=Game Boy Advance, NDS=Nintendo DS, 3DS, PSP, PSV=PS Vita
+───────────────────────────────────────────── */
+const games = [
+
+/* ══════════════════════════════════════════════════════
+   BATTLEFIELD
+══════════════════════════════════════════════════════ */
+// Battlefield 1942 (2002) - PC only physical
+{f:"BF",title:"Battlefield 1942",             year:2002,platforms:["PC"],                     special:null,        img:"imgs/battlefield-1942.png"},
+{f:"BF",title:"Battlefield 1942: Road to Rome",year:2003,platforms:["PC"],                    special:"Expansion", img:"imgs/battlefield-1942-road-to-rome.jpg"},
+{f:"BF",title:"Battlefield 1942: Secret Weapons",year:2003,platforms:["PC"],                  special:"Expansion", img:"imgs/battlefield-1942-secret-weapons.jpg"},
+{f:"BF",title:"Battlefield Vietnam",           year:2004,platforms:["PC"],                     special:null,        img:"imgs/battlefield-vietnam.jpg"},
+{f:"BF",title:"Battlefield 2",                 year:2005,platforms:["PC"],                     special:null,        img:"imgs/battlefield-2.jpg"},
+{f:"BF",title:"Battlefield 2: Special Forces", year:2005,platforms:["PC"],                     special:"Expansion", img:"imgs/battlefield-2-special-forces.jpg"},
+{f:"BF",title:"Battlefield 2: Euro Force",     year:2006,platforms:["PC"],                     special:"Booster",   img:"imgs/battlefield-2-euro-force.jpg"},
+{f:"BF",title:"Battlefield 2: Armored Fury",   year:2006,platforms:["PC"],                     special:"Booster",   img:"imgs/battlefield-2-armored-fury.jpg"},
+{f:"BF",title:"Battlefield 2142",              year:2006,platforms:["PC"],                     special:null,        img:"imgs/battlefield-2142.jpg"},
+{f:"BF",title:"Battlefield: Bad Company",      year:2008,platforms:["X360","PS3"],              special:null,        img:"imgs/battlefield-bad-company.jpg"},
+{f:"BF",title:"Battlefield 1943",              year:2009,platforms:["X360","PS3"],              special:"Digital Only",img:""},
+{f:"BF",title:"Battlefield: Bad Company 2",    year:2010,platforms:["X360","PS3","PC"],         special:null,        img:"imgs/battlefield-bad-company-2.jpg"},
+{f:"BF",title:"Battlefield: Bad Company 2 Vietnam",year:2010,platforms:["X360","PS3","PC"],    special:"Expansion", img:"imgs/battlefield-bad-company-2-vietnam.jpg"},
+{f:"BF",title:"Battlefield 3",                 year:2011,platforms:["X360","PS3","PC"],         special:null,        img:"imgs/battlefield-3.jpg"},
+{f:"BF",title:"Battlefield 3: Back to Karkand",year:2011,platforms:["X360","PS3","PC"],        special:"Expansion", img:"imgs/battlefield-3-back-to-karkand.jpg"},
+{f:"BF",title:"Battlefield 3: Close Quarters", year:2012,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
+{f:"BF",title:"Battlefield 3: Armored Kill",   year:2012,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
+{f:"BF",title:"Battlefield 3: Aftermath",      year:2012,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
+{f:"BF",title:"Battlefield 3: End Game",       year:2013,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
+{f:"BF",title:"Battlefield 4",                 year:2013,platforms:["X360","XBO","PS3","PS4","PC"],special:null,    img:"imgs/battlefield-4.jpg"},
+{f:"BF",title:"Battlefield Hardline",          year:2015,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/battlefield-hardline.jpg"},
+{f:"BF",title:"Battlefield 1",                 year:2016,platforms:["XBO","PS4","PC"],          special:null,        img:"imgs/battlefield-1.png"},
+{f:"BF",title:"Battlefield V",                 year:2018,platforms:["XBO","PS4","PC"],          special:null,        img:"imgs/battlefield-v.jpg"},
+{f:"BF",title:"Battlefield 2042",              year:2021,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/battlefield-2042.jpg"},
+
+/* ══════════════════════════════════════════════════════
+   CALL OF DUTY
+══════════════════════════════════════════════════════ */
+{f:"COD",title:"Call of Duty",                  year:2003,platforms:["PC"],                    special:null,        img:"imgs/call-of-duty.png"},
+{f:"COD",title:"Call of Duty: United Offensive", year:2004,platforms:["PC"],                   special:"Expansion", img:"imgs/call-of-duty-united-offensive.jpg"},
+{f:"COD",title:"Call of Duty 2",                year:2005,platforms:["X360","PC"],             special:null,        img:"imgs/call-of-duty-2.jpg"},
+{f:"COD",title:"Call of Duty 3",                year:2006,platforms:["X360","XB","PS3","PS2","Wii"],special:null,  img:"imgs/call-of-duty-3.jpg"},
+{f:"COD",title:"Call of Duty 4: Modern Warfare",year:2007,platforms:["X360","PS3","PC","Wii","NDS"],special:null,  img:"imgs/call-of-duty-4-modern-warfare.jpg"},
+{f:"COD",title:"Call of Duty: World at War",    year:2008,platforms:["X360","PS3","PC","Wii","NDS","PS2"],special:null,img:"imgs/call-of-duty-world-at-war.jpg"},
+{f:"COD",title:"Call of Duty: Modern Warfare 2",year:2009,platforms:["X360","PS3","PC"],       special:null,        img:"imgs/call-of-duty-modern-warfare-2.png"},
+{f:"COD",title:"Call of Duty: Black Ops",       year:2010,platforms:["X360","PS3","PC","Wii","NDS"],special:null,  img:"imgs/call-of-duty-black-ops.jpg"},
+{f:"COD",title:"Call of Duty: Modern Warfare 3",year:2011,platforms:["X360","PS3","PC","Wii","NDS","WiiU"],special:null,img:"imgs/call-of-duty-modern-warfare-3.jpg"},
+{f:"COD",title:"Call of Duty: Black Ops II",    year:2012,platforms:["X360","PS3","PC","WiiU"],special:null,        img:"imgs/call-of-duty-black-ops-ii.jpg"},
+{f:"COD",title:"Call of Duty: Ghosts",          year:2013,platforms:["XBO","X360","PS4","PS3","PC","WiiU"],special:null,img:"imgs/call-of-duty-ghosts.jpg"},
+{f:"COD",title:"Call of Duty: Advanced Warfare",year:2014,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/call-of-duty-advanced-warfare.png"},
+{f:"COD",title:"Call of Duty: Black Ops III",   year:2015,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/call-of-duty-black-ops-iii.png"},
+{f:"COD",title:"Call of Duty: Infinite Warfare",year:2016,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-infinite-warfare.jpg"},
+{f:"COD",title:"Call of Duty: WWII",            year:2017,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-wwii.jpg"},
+{f:"COD",title:"Call of Duty: Black Ops 4",     year:2018,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-black-ops-4.jpg"},
+{f:"COD",title:"Call of Duty: Modern Warfare",  year:2019,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-modern-warfare-2019.png"},
+{f:"COD",title:"Call of Duty: Black Ops Cold War",year:2020,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,  img:"imgs/call-of-duty-black-ops-cold-war.jpg"},
+{f:"COD",title:"Call of Duty: Vanguard",        year:2021,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/call-of-duty-vanguard.jpg"},
+{f:"COD",title:"Call of Duty: Modern Warfare II",year:2022,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,  img:"imgs/call-of-duty-modern-warfare-ii.png"},
+{f:"COD",title:"Call of Duty: Modern Warfare III",year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null, img:"imgs/call-of-duty-modern-warfare-iii.jpg"},
+{f:"COD",title:"Call of Duty: Black Ops 6",     year:2024,platforms:["XSX","PS5","PC"],        special:null,        img:"imgs/call-of-duty-black-ops-6.png"},
+
+/* ══════════════════════════════════════════════════════
+   GEARS OF WAR
+══════════════════════════════════════════════════════ */
+{f:"GOW",title:"Gears of War",                  year:2006,platforms:["X360","PC"],             special:null,        img:"imgs/gears-of-war.jpg"},
+{f:"GOW",title:"Gears of War 2",                year:2008,platforms:["X360"],                  special:null,        img:"imgs/gears-of-war-2.jpg"},
+{f:"GOW",title:"Gears of War 3",                year:2011,platforms:["X360"],                  special:null,        img:"imgs/gears-of-war-3.jpg"},
+{f:"GOW",title:"Gears of War: Judgment",        year:2013,platforms:["X360"],                  special:null,        img:"imgs/gears-of-war-judgment.jpg"},
+{f:"GOW",title:"Gears of War: Ultimate Edition",year:2015,platforms:["XBO","PC"],              special:"Remaster",  img:"imgs/gears-of-war-ultimate-edition.jpg"},
+{f:"GOW",title:"Gears 4",                       year:2016,platforms:["XBO","PC"],              special:null,        img:"imgs/gears-4.jpg"},
+{f:"GOW",title:"Gears 5",                       year:2019,platforms:["XBO","XSX","PC"],        special:null,        img:"imgs/gears-5.jpg"},
+{f:"GOW",title:"Gears Tactics",                 year:2020,platforms:["XBO","XSX","PC"],        special:null,        img:"imgs/gears-tactics.jpg"},
+{f:"GOW",title:"Gears of War E-Day",            year:2026,platforms:["XSX","PC"],              special:"Upcoming",  img:""},
+
+/* ══════════════════════════════════════════════════════
+   HALO
+══════════════════════════════════════════════════════ */
+{f:"HALO",title:"Halo: Combat Evolved",         year:2001,platforms:["XB","PC","Mac"],         special:null,        img:"imgs/halo-combat-evolved.jpg"},
+{f:"HALO",title:"Halo 2",                       year:2004,platforms:["XB","PC"],               special:null,        img:"imgs/halo-2.jpg"},
+{f:"HALO",title:"Halo 3",                       year:2007,platforms:["X360"],                  special:null,        img:"imgs/halo-3.jpg"},
+{f:"HALO",title:"Halo 3: ODST",                 year:2009,platforms:["X360"],                  special:null,        img:"imgs/halo-3-odst.jpg"},
+{f:"HALO",title:"Halo: Reach",                  year:2010,platforms:["X360"],                  special:null,        img:"imgs/halo-reach.jpg"},
+{f:"HALO",title:"Halo: Combat Evolved Anniversary",year:2011,platforms:["X360"],               special:"Remaster",  img:"imgs/halo-combat-evolved-anniversary.jpg"},
+{f:"HALO",title:"Halo 4",                       year:2012,platforms:["X360"],                  special:null,        img:"imgs/halo-4.jpg"},
+{f:"HALO",title:"Halo: Spartan Assault",        year:2013,platforms:["X360","XBO"],            special:null,        img:"imgs/halo-spartan-assault.jpg"},
+{f:"HALO",title:"Halo: The Master Chief Collection",year:2014,platforms:["XBO","PC"],          special:"Compilation",img:"imgs/halo-the-master-chief-collection.jpg"},
+{f:"HALO",title:"Halo 5: Guardians",            year:2015,platforms:["XBO"],                   special:null,        img:"imgs/halo-5-guardians.jpg"},
+{f:"HALO",title:"Halo Wars 2",                  year:2017,platforms:["XBO","PC"],              special:null,        img:"imgs/halo-wars-2.jpg"},
+{f:"HALO",title:"Halo Infinite",                year:2021,platforms:["XSX","XBO","PC"],        special:null,        img:"imgs/halo-infinite.jpg"},
+
+/* Halo Wars (prequel) */
+{f:"HALO",title:"Halo Wars",                    year:2009,platforms:["X360"],                  special:null,        img:"imgs/halo-wars.jpg"},
+
+/* ══════════════════════════════════════════════════════
+   BLIZZARD
+══════════════════════════════════════════════════════ */
+/* Warcraft */
+{f:"BLZ",title:"Warcraft: Orcs & Humans",       year:1994,platforms:["PC"],                    special:null,        img:"imgs/warcraft-orcs-and-humans.png"},
+{f:"BLZ",title:"Warcraft II: Tides of Darkness",year:1995,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/warcraft-ii-tides-of-darkness.jpg"},
+{f:"BLZ",title:"Warcraft II: Beyond the Dark Portal",year:1996,platforms:["PC"],               special:"Expansion", img:"imgs/warcraft-ii-beyond-the-dark-portal.jpg"},
+{f:"BLZ",title:"Warcraft II: The Dark Saga",    year:1997,platforms:["PS1","SAT"],             special:"Port",      img:"imgs/warcraft-ii-the-dark-saga.jpg"},
+{f:"BLZ",title:"Warcraft III: Reign of Chaos",  year:2002,platforms:["PC","Mac"],              special:null,        img:"imgs/warcraft-iii-reign-of-chaos.jpg"},
+{f:"BLZ",title:"Warcraft III: The Frozen Throne",year:2003,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/warcraft-iii-the-frozen-throne.jpg"},
+{f:"BLZ",title:"Warcraft III: Reforged",        year:2020,platforms:["PC"],                    special:"Remaster",  img:"imgs/warcraft-iii-reforged.jpg"},
+/* World of Warcraft */
+{f:"BLZ",title:"World of Warcraft",             year:2004,platforms:["PC","Mac"],              special:null,        img:"imgs/world-of-warcraft.jpg"},
+{f:"BLZ",title:"WoW: The Burning Crusade",      year:2007,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-burning-crusade.jpg"},
+{f:"BLZ",title:"WoW: Wrath of the Lich King",   year:2008,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-wrath-of-the-lich-king.jpg"},
+{f:"BLZ",title:"WoW: Cataclysm",               year:2010,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-cataclysm.jpg"},
+{f:"BLZ",title:"WoW: Mists of Pandaria",        year:2012,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-mists-of-pandaria.jpg"},
+{f:"BLZ",title:"WoW: Warlords of Draenor",      year:2014,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-warlords-of-draenor.jpg"},
+{f:"BLZ",title:"WoW: Legion",                   year:2016,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-legion.jpg"},
+{f:"BLZ",title:"WoW: Battle for Azeroth",       year:2018,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-battle-for-azeroth.png"},
+{f:"BLZ",title:"WoW: Shadowlands",              year:2020,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-shadowlands.jpg"},
+{f:"BLZ",title:"WoW: Dragonflight",             year:2022,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-dragonflight.jpg"},
+{f:"BLZ",title:"WoW: The War Within",           year:2024,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-war-within.png"},
+/* Diablo */
+{f:"BLZ",title:"Diablo",                        year:1996,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/diablo.png"},
+{f:"BLZ",title:"Diablo: Hellfire",              year:1997,platforms:["PC"],                    special:"Expansion", img:"imgs/diablo-hellfire.jpg"},
+{f:"BLZ",title:"Diablo II",                     year:2000,platforms:["PC","Mac"],              special:null,        img:"imgs/diablo-ii.png"},
+{f:"BLZ",title:"Diablo II: Lord of Destruction", year:2001,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/diablo-ii-lord-of-destruction.jpg"},
+{f:"BLZ",title:"Diablo III",                    year:2012,platforms:["PC","X360","XBO","PS3","PS4","NSW","Mac"],special:null,img:"imgs/diablo-iii.png"},
+{f:"BLZ",title:"Diablo III: Reaper of Souls",   year:2014,platforms:["PC","X360","XBO","PS3","PS4","Mac"],special:"Expansion",img:"imgs/diablo-iii-reaper-of-souls.jpg"},
+{f:"BLZ",title:"Diablo III: Rise of the Necromancer",year:2017,platforms:["PC","X360","XBO","PS3","PS4"],special:"Expansion",img:""},
+{f:"BLZ",title:"Diablo II: Resurrected",        year:2021,platforms:["XSX","XBO","PS5","PS4","NSW","PC"],special:"Remaster",img:"imgs/diablo-ii-resurrected.jpg"},
+{f:"BLZ",title:"Diablo IV",                     year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/diablo-iv.jpg"},
+{f:"BLZ",title:"Diablo IV: Vessel of Hatred",   year:2024,platforms:["XSX","XBO","PS5","PS4","PC"],special:"Expansion",img:"imgs/diablo-iv-vessel-of-hatred.jpg"},
+/* StarCraft */
+{f:"BLZ",title:"StarCraft",                     year:1998,platforms:["PC","Mac","N64"],        special:null,        img:"imgs/starcraft.jpg"},
+{f:"BLZ",title:"StarCraft: Brood War",          year:1998,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/starcraft-brood-war.png"},
+{f:"BLZ",title:"StarCraft: 64",                 year:2000,platforms:["N64"],                   special:"Port",      img:"imgs/starcraft-64.jpg"},
+{f:"BLZ",title:"StarCraft II: Wings of Liberty",year:2010,platforms:["PC","Mac"],              special:null,        img:"imgs/starcraft-ii-wings-of-liberty.jpg"},
+{f:"BLZ",title:"StarCraft II: Heart of the Swarm",year:2013,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-heart-of-the-swarm.jpg"},
+{f:"BLZ",title:"StarCraft II: Legacy of the Void",year:2015,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-legacy-of-the-void.jpg"},
+{f:"BLZ",title:"StarCraft: Remastered",         year:2017,platforms:["PC","Mac"],              special:"Remaster",  img:"imgs/starcraft-remastered.jpg"},
+/* Overwatch */
+{f:"BLZ",title:"Overwatch: Origins Edition",    year:2016,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/overwatch-origins-edition.jpg"},
+{f:"BLZ",title:"Overwatch: Legendary Edition",  year:2018,platforms:["XBO","PS4","NSW","PC"],  special:null,        img:"imgs/overwatch-legendary-edition.jpg"},
+/* Hearthstone */
+{f:"BLZ",title:"Hearthstone (No Physical Release)",year:2014,platforms:["PC"],                 special:"Digital Only",img:""},
+/* Heroes of the Storm */
+{f:"BLZ",title:"Heroes of the Storm (Starter Pack)",year:2015,platforms:["PC"],               special:null,        img:""},
+/* Blackthorne */
+{f:"BLZ",title:"Blackthorne",                   year:1994,platforms:["PC","SNES","32X","GBA"], special:null,        img:"imgs/blackthorne.png"},
+/* The Lost Vikings */
+{f:"BLZ",title:"The Lost Vikings",              year:1993,platforms:["PC","SNES","MD","GBA"],  special:null,        img:"imgs/the-lost-vikings.jpg"},
+{f:"BLZ",title:"The Lost Vikings 2",            year:1997,platforms:["PC","SNES","PS1"],       special:null,        img:"imgs/the-lost-vikings-2.jpg"},
+/* Rock n Roll Racing */
+{f:"BLZ",title:"Rock n' Roll Racing",           year:1993,platforms:["SNES","MD"],             special:null,        img:"imgs/rock-n-roll-racing.jpg"},
+/* Scarlett Ribbons */
+// skipped - lesser known
+/* Diablo Immortal */
+{f:"BLZ",title:"Diablo Immortal (No Physical)", year:2022,platforms:["PC"],                    special:"Digital Only",img:""},
+];
+
+/* ─── CONFIG ─────────────────────────────────── */
+const franchises={
+  "BF":  {name:"Battlefield",    col:"#e63946"},
+  "COD": {name:"Call of Duty",   col:"#f0a500"},
+  "GOW": {name:"Gears of War",   col:"#c0392b"},
+  "HALO":{name:"Halo",           col:"#1a78c2"},
+  "BLZ": {name:"Blizzard",       col:"#0087ff"},
+};
+
+const platformColors={
+  "XB":"#107c10","X360":"#52b043","XBO":"#52b043","XSX":"#9de88d",
+  "PS1":"#003087","PS2":"#003087","PS3":"#003087","PS4":"#0070d1","PS5":"#0070d1","PSP":"#0070d1","PSV":"#0070d1",
+  "PC":"#6a8aaa","Mac":"#555",
+  "Wii":"#c0392b","WiiU":"#c0392b","NSW":"#e4000f","GCN":"#6a0dad",
+  "NDS":"#888","3DS":"#888","GBA":"#888","N64":"#e4000f",
+  "SNES":"#e4000f","MD":"#1a78c2","SAT":"#1a78c2","32X":"#888",
+};
+const platformLabel={
+  "XB":"Xbox","X360":"Xbox 360","XBO":"Xbox One","XSX":"Xbox Series X",
+  "PS1":"PS1","PS2":"PS2","PS3":"PS3","PS4":"PS4","PS5":"PS5","PSP":"PSP","PSV":"PS Vita",
+  "PC":"PC (Win)","Mac":"Mac",
+  "Wii":"Wii","WiiU":"Wii U","NSW":"Switch","GCN":"GameCube",
+  "NDS":"DS","3DS":"3DS","GBA":"GBA","N64":"N64",
+  "SNES":"SNES","MD":"Mega Drive","SAT":"Saturn","32X":"32X",
+};
+
+const fOrder=["All","BF","COD","GOW","HALO","BLZ"];
+const allPlatforms=[...new Set(games.flatMap(g=>g.platforms))].sort((a,b)=>{
+  const order=["XSX","XBO","X360","XB","PS5","PS4","PS3","PS2","PS1","PSP","PSV","PC","Mac","NSW","WiiU","Wii","GCN","3DS","NDS","GBA","N64","SNES","MD","SAT","32X"];
+  return (order.indexOf(a)<0?99:order.indexOf(a))-(order.indexOf(b)<0?99:order.indexOf(b));
+});
+
+let activeFranchise="All", activePlatform="All", viewMode="grid";
+const owned=new Set(JSON.parse(localStorage.getItem("wc_owned")||"[]"));
+function itemKey(d){return d.f+"|"+d.title+"|"+d.year;}
+
+/* ─── BUILD FILTERS ─── */
+function buildFilters(containerId,items,getLabel,getStyle,setFn){
+  const el=document.getElementById(containerId);
+  items.forEach(item=>{
+    const btn=document.createElement("button");
+    btn.className="fbtn"+(item==="All"?" active":"");
+    btn.textContent=getLabel(item);
+    const s=getStyle(item);
+    if(item==="All") btn.style.cssText="background:rgba(82,176,67,0.12);border-color:rgba(82,176,67,0.45);color:#52b043";
+    btn.addEventListener("click",()=>{
+      el.querySelectorAll(".fbtn").forEach(b=>{b.classList.remove("active");b.style.cssText="";});
+      btn.classList.add("active");
+      if(item==="All") btn.style.cssText="background:rgba(82,176,67,0.12);border-color:rgba(82,176,67,0.45);color:#52b043";
+      else if(s) btn.style.cssText="background:"+s.bg+";color:"+s.fg+";border-color:"+s.bg+";box-shadow:0 2px 10px "+s.bg+"66";
+      setFn(item); render();
+    });
+    el.appendChild(btn);
+  });
+}
+buildFilters("fFilters",fOrder,
+  item=>item==="All"?"All Franchises":franchises[item].name,
+  item=>item==="All"?null:{bg:franchises[item]?.col||"#52b043",fg:"#fff"},
+  item=>{activeFranchise=item;}
+);
+buildFilters("pFilters",["All",...allPlatforms],
+  item=>item==="All"?"All Platforms":(platformLabel[item]||item),
+  item=>item==="All"?null:{bg:platformColors[item]||"#888",fg:"#fff"},
+  item=>{activePlatform=item;}
+);
+
+/* ─── MAKE CARD ─── */
+function makeCard(data,delay){
+  const fc=franchises[data.f]?.col||"#52b043";
+  const key=itemKey(data), isOwned=owned.has(key);
+  const card=document.createElement("div");
+  card.className="card"+(isOwned?" owned":"");
+  card.style.animationDelay=delay+"s";
+
+  // img area
+  const imgA=document.createElement("div"); imgA.className="cimg";
+  imgA.style.background="linear-gradient(180deg,"+fc+"16 0%,#040810 70%)";
+  const img=document.createElement("img");
+  img.alt=data.title; img.loading="lazy";
+  img.src=data.img||"";
+  const ph=document.createElement("div"); ph.className="phdr";
+  ph.style.background=fc+"12";
+  ph.innerHTML=`<div class="phnum" style="color:${fc}">${data.year}</div><div class="phnm" style="color:${fc}">${data.title.toUpperCase()}</div>`;
+  img.onerror=()=>{img.style.display="none";ph.style.display="flex";};
+  if(!data.img){img.style.display="none";ph.style.display="flex";}
+  imgA.appendChild(ph); imgA.appendChild(img);
+
+  // franchise badge
+  const fbadge=document.createElement("div"); fbadge.className="fbadge";
+  fbadge.style.background=fc; fbadge.style.color="#fff";
+  fbadge.textContent=franchises[data.f]?.name||data.f;
+  imgA.appendChild(fbadge);
+
+  // special badge
+  if(data.special){
+    const pb=document.createElement("div"); pb.className="pbadge";
+    const sc=data.special==="Remaster"?"rgba(241,196,15,0.25)":data.special==="Expansion"?"rgba(155,89,182,0.25)":"rgba(52,152,219,0.2)";
+    const stc=data.special==="Remaster"?"#f1c40f":data.special==="Expansion"?"#c39bd3":"#7fb3d3";
+    pb.style.cssText="background:"+sc+";color:"+stc+";border:1px solid "+stc+"44";
+    pb.textContent=data.special;
+    imgA.appendChild(pb);
+  }
+
+  // owned btn
+  const ob=document.createElement("div"); ob.className="obtn"+(isOwned?" owned":""); ob.textContent="✓";
+  ob.addEventListener("click",e=>{
+    e.stopPropagation();
+    if(owned.has(key)){owned.delete(key);ob.classList.remove("owned");card.classList.remove("owned");}
+    else{owned.add(key);ob.classList.add("owned");card.classList.add("owned");}
+    localStorage.setItem("wc_owned",JSON.stringify([...owned]));updateStats();
+  });
+  imgA.appendChild(ob); card.appendChild(imgA);
+
+  // body
+  const body=document.createElement("div"); body.className="cbody";
+  const pTags=data.platforms.map(p=>{
+    const c=platformColors[p]||"#555";
+    const isXbox=["XB","X360","XBO","XSX"].includes(p);
+    const lbl=platformLabel[p]||p;
+    return `<span class="ptag" style="background:${c}${isXbox?"":"99"};color:${isXbox?"#000":"#ddd"}">${lbl}</span>`;
+  }).join("");
+  body.innerHTML=`<div class="cyear">${data.year}</div><div class="cname">${data.title}</div><div class="ctags">${pTags}${data.special&&data.special!=="Digital Only"&&data.special!=="Upcoming"?`<span class="etag">${data.special}</span>`:""}</div>`;
+  card.appendChild(body);
+
+  card.addEventListener("mouseenter",()=>{card.style.borderColor=fc+"55";card.style.boxShadow="0 16px 40px "+fc+"20";});
+  card.addEventListener("mouseleave",()=>{card.style.borderColor="";card.style.boxShadow="";});
+  return card;
+}
+
+/* ─── RENDER ─── */
+function render(){
+  const q=document.getElementById("search").value.toLowerCase().trim();
+  const out=document.getElementById("output"); out.innerHTML="";
+  const filtered=games.filter(g=>{
+    if(activeFranchise!=="All"&&g.f!==activeFranchise) return false;
+    if(activePlatform!=="All"&&!g.platforms.includes(activePlatform)) return false;
+    if(q&&!(g.title.toLowerCase().includes(q)||String(g.year).includes(q)||(g.special||"").toLowerCase().includes(q)||franchises[g.f]?.name.toLowerCase().includes(q)||(g.platforms.map(p=>platformLabel[p]||p).join(" ").toLowerCase().includes(q)))) return false;
+    return true;
+  });
+
+  if(!filtered.length){
+    const g=document.createElement("div"); g.className="grid";
+    g.innerHTML=`<div class="empty"><div class="empty-ico">⊘</div><p>No titles match "${q||"current filters"}"</p></div>`;
+    out.appendChild(g); 
+  } else {
+    const byFranchise={};
+    fOrder.filter(f=>f!=="All").forEach(f=>{byFranchise[f]=[];});
+    filtered.forEach(g=>(byFranchise[g.f]=byFranchise[g.f]||[]).push(g));
+
+    fOrder.filter(f=>f!=="All").forEach(f=>{
+      const items=byFranchise[f]||[];
+      if(!items.length) return;
+      const fc=franchises[f].col;
+      const lbl=document.createElement("div"); lbl.className="slabel";
+      lbl.innerHTML=`<div class="slabel-inner"><div class="sdot" style="background:${fc};box-shadow:0 0 8px ${fc}88"></div><span class="stxt" style="color:${fc}">${franchises[f].name}</span><span class="scnt">${items.length} titles</span></div>`;
+      out.appendChild(lbl);
+
+      // group by decade/era
+      const byYear={};
+      items.forEach(g=>{const era=Math.floor(g.year/10)*10;(byYear[era]=byYear[era]||[]).push(g);});
+      let idx=0;
+      Object.keys(byYear).sort().forEach(era=>{
+        const list=byYear[era];
+        const sublbl=document.createElement("div"); sublbl.className="ylbl";
+        sublbl.textContent=era+"s";
+        out.appendChild(sublbl);
+        const grid=document.createElement("div"); grid.className="grid"+(viewMode==="list"?" lv":"");
+        list.sort((a,b)=>a.year-b.year).forEach(g=>grid.appendChild(makeCard(g,Math.min(idx++*0.012,0.35))));
+        out.appendChild(grid);
+      });
+    });
+  }
+  document.getElementById("countPill").textContent=`Showing ${filtered.length} title${filtered.length!==1?"s":""}`;
+  updateStats();
+}
+
+/* ─── STATS ─── */
+function updateStats(){
+  const t=games.length, n=owned.size, pct=t>0?Math.round(n/t*100):0;
+  document.getElementById("statOwned").textContent=n;
+  document.getElementById("statTotal").textContent=t;
+  document.getElementById("statPct").textContent=pct+"%";
+  document.getElementById("totalCount").textContent=t;
+  document.getElementById("ownedCount").textContent=`✓ ${n} owned`;
+}
+
+function setView(mode){
+  viewMode=mode;
+  document.getElementById("gvBtn").classList.toggle("active",mode==="grid");
+  document.getElementById("lvBtn").classList.toggle("active",mode==="list");
+  render();
+}
+
+updateStats(); render();
+document.getElementById("search").addEventListener("input",render);
+</script>
+
+<footer style="position:relative;z-index:1;margin-top:60px;padding:28px 24px;border-top:1px solid rgba(82,176,67,0.1);text-align:center;">
+  <p style="font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#3a5068;line-height:1.9;max-width:700px;margin:0 auto;">
+    Fan-made collection tracker for personal use only. Not affiliated with EA, Activision, Microsoft, The Coalition, 343 Industries, or Blizzard Entertainment.
+    All trademarks, titles, and cover art are property of their respective owners.
+  </p>
+</footer>
+
+</body>
+</html>
