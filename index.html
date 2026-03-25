@@ -231,10 +231,10 @@ input[type="text"]::placeholder{color:var(--muted);}
   pointer-events:none;z-index:2;
 }
 .cimg img{
-  width:100%;height:100%;object-fit:cover;object-position:top;
+  width:100%;height:100%;object-fit:contain;object-position:center;
   transition:transform .35s;position:relative;z-index:1;
 }
-.card:hover .cimg img{transform:scale(1.06);}
+.card:hover .cimg img{transform:scale(1.04);}
 .phdr{
   width:100%;height:100%;flex-direction:column;align-items:center;
   justify-content:center;gap:8px;padding:16px;display:none;position:relative;z-index:1;
@@ -369,50 +369,43 @@ const games = [
 {f:"BF",title:"Battlefield Vietnam",           year:2004,platforms:["PC"],                     special:null,        img:"imgs/battlefield-vietnam.jpg"},
 {f:"BF",title:"Battlefield 2",                 year:2005,platforms:["PC"],                     special:null,        img:"imgs/battlefield-2.jpg"},
 {f:"BF",title:"Battlefield 2: Special Forces", year:2005,platforms:["PC"],                     special:"Expansion", img:"imgs/battlefield-2-special-forces.jpg"},
-{f:"BF",title:"Battlefield 2: Euro Force",     year:2006,platforms:["PC"],                     special:"Booster",   img:"imgs/battlefield-2-euro-force.jpg"},
-{f:"BF",title:"Battlefield 2: Armored Fury",   year:2006,platforms:["PC"],                     special:"Booster",   img:"imgs/battlefield-2-armored-fury.jpg"},
 {f:"BF",title:"Battlefield 2142",              year:2006,platforms:["PC"],                     special:null,        img:"imgs/battlefield-2142.jpg"},
 {f:"BF",title:"Battlefield: Bad Company",      year:2008,platforms:["X360","PS3"],              special:null,        img:"imgs/battlefield-bad-company.jpg"},
-{f:"BF",title:"Battlefield 1943",              year:2009,platforms:["X360","PS3"],              special:"Digital Only",img:""},
 {f:"BF",title:"Battlefield: Bad Company 2",    year:2010,platforms:["X360","PS3","PC"],         special:null,        img:"imgs/battlefield-bad-company-2.jpg"},
 {f:"BF",title:"Battlefield: Bad Company 2 Vietnam",year:2010,platforms:["X360","PS3","PC"],    special:"Expansion", img:"imgs/battlefield-bad-company-2-vietnam.jpg"},
 {f:"BF",title:"Battlefield 3",                 year:2011,platforms:["X360","PS3","PC"],         special:null,        img:"imgs/battlefield-3.jpg"},
 {f:"BF",title:"Battlefield 3: Back to Karkand",year:2011,platforms:["X360","PS3","PC"],        special:"Expansion", img:"imgs/battlefield-3-back-to-karkand.jpg"},
-{f:"BF",title:"Battlefield 3: Close Quarters", year:2012,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
-{f:"BF",title:"Battlefield 3: Armored Kill",   year:2012,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
-{f:"BF",title:"Battlefield 3: Aftermath",      year:2012,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
-{f:"BF",title:"Battlefield 3: End Game",       year:2013,platforms:["X360","PS3","PC"],        special:"Expansion", img:""},
 {f:"BF",title:"Battlefield 4",                 year:2013,platforms:["X360","XBO","PS3","PS4","PC"],special:null,    img:"imgs/battlefield-4.jpg"},
 {f:"BF",title:"Battlefield Hardline",          year:2015,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/battlefield-hardline.jpg"},
-{f:"BF",title:"Battlefield 1",                 year:2016,platforms:["XBO","PS4","PC"],          special:null,        img:"imgs/battlefield-1.png"},
+{f:"BF",title:"Battlefield 1",                 year:2016,platforms:["XBO","PS4","PC"],          special:null,        img:"imgs/battlefield-1-ps4.jpg"},
 {f:"BF",title:"Battlefield V",                 year:2018,platforms:["XBO","PS4","PC"],          special:null,        img:"imgs/battlefield-v.jpg"},
 {f:"BF",title:"Battlefield 2042",              year:2021,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/battlefield-2042.jpg"},
 
 /* ══════════════════════════════════════════════════════
    CALL OF DUTY
 ══════════════════════════════════════════════════════ */
-{f:"COD",title:"Call of Duty",                  year:2003,platforms:["PC"],                    special:null,        img:"imgs/call-of-duty.png"},
+{f:"COD",title:"Call of Duty",                  year:2003,platforms:["PC"],                    special:null,        img:"imgs/call-of-duty.jpg"},
 {f:"COD",title:"Call of Duty: United Offensive", year:2004,platforms:["PC"],                   special:"Expansion", img:"imgs/call-of-duty-united-offensive.jpg"},
 {f:"COD",title:"Call of Duty 2",                year:2005,platforms:["X360","PC"],             special:null,        img:"imgs/call-of-duty-2.jpg"},
 {f:"COD",title:"Call of Duty 3",                year:2006,platforms:["X360","XB","PS3","PS2","Wii"],special:null,  img:"imgs/call-of-duty-3.jpg"},
-{f:"COD",title:"Call of Duty 4: Modern Warfare",year:2007,platforms:["X360","PS3","PC","Wii","NDS"],special:null,  img:"imgs/call-of-duty-4-modern-warfare.jpg"},
+{f:"COD",title:"Call of Duty 4: Modern Warfare",year:2007,platforms:["X360","PS3","PC","Wii","NDS"],special:null,  img:"imgs/call-of-duty-4-modern-warfare-x360b.jpg"},
 {f:"COD",title:"Call of Duty: World at War",    year:2008,platforms:["X360","PS3","PC","Wii","NDS","PS2"],special:null,img:"imgs/call-of-duty-world-at-war.jpg"},
-{f:"COD",title:"Call of Duty: Modern Warfare 2",year:2009,platforms:["X360","PS3","PC"],       special:null,        img:"imgs/call-of-duty-modern-warfare-2.png"},
+{f:"COD",title:"Call of Duty: Modern Warfare 2",year:2009,platforms:["X360","PS3","PC"],       special:null,        img:"imgs/call-of-duty-modern-warfare-2.jpg"},
 {f:"COD",title:"Call of Duty: Black Ops",       year:2010,platforms:["X360","PS3","PC","Wii","NDS"],special:null,  img:"imgs/call-of-duty-black-ops.jpg"},
 {f:"COD",title:"Call of Duty: Modern Warfare 3",year:2011,platforms:["X360","PS3","PC","Wii","NDS","WiiU"],special:null,img:"imgs/call-of-duty-modern-warfare-3.jpg"},
 {f:"COD",title:"Call of Duty: Black Ops II",    year:2012,platforms:["X360","PS3","PC","WiiU"],special:null,        img:"imgs/call-of-duty-black-ops-ii.jpg"},
 {f:"COD",title:"Call of Duty: Ghosts",          year:2013,platforms:["XBO","X360","PS4","PS3","PC","WiiU"],special:null,img:"imgs/call-of-duty-ghosts.jpg"},
-{f:"COD",title:"Call of Duty: Advanced Warfare",year:2014,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/call-of-duty-advanced-warfare.png"},
-{f:"COD",title:"Call of Duty: Black Ops III",   year:2015,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/call-of-duty-black-ops-iii.png"},
+{f:"COD",title:"Call of Duty: Advanced Warfare",year:2014,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/call-of-duty-advanced-warfare.jpg"},
+{f:"COD",title:"Call of Duty: Black Ops III",   year:2015,platforms:["XBO","X360","PS4","PS3","PC"],special:null,   img:"imgs/call-of-duty-black-ops-iii-xone.jpg"},
 {f:"COD",title:"Call of Duty: Infinite Warfare",year:2016,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-infinite-warfare.jpg"},
 {f:"COD",title:"Call of Duty: WWII",            year:2017,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-wwii.jpg"},
-{f:"COD",title:"Call of Duty: Black Ops 4",     year:2018,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-black-ops-4.jpg"},
-{f:"COD",title:"Call of Duty: Modern Warfare",  year:2019,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-modern-warfare-2019.png"},
+{f:"COD",title:"Call of Duty: Black Ops 4",     year:2018,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-black-ops-4-xone.jpg"},
+{f:"COD",title:"Call of Duty: Modern Warfare",  year:2019,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/call-of-duty-modern-warfare-2019.jpg"},
 {f:"COD",title:"Call of Duty: Black Ops Cold War",year:2020,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,  img:"imgs/call-of-duty-black-ops-cold-war.jpg"},
 {f:"COD",title:"Call of Duty: Vanguard",        year:2021,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/call-of-duty-vanguard.jpg"},
 {f:"COD",title:"Call of Duty: Modern Warfare II",year:2022,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,  img:"imgs/call-of-duty-modern-warfare-ii.png"},
-{f:"COD",title:"Call of Duty: Modern Warfare III",year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null, img:"imgs/call-of-duty-modern-warfare-iii.jpg"},
-{f:"COD",title:"Call of Duty: Black Ops 6",     year:2024,platforms:["XSX","PS5","PC"],        special:null,        img:"imgs/call-of-duty-black-ops-6.png"},
+{f:"COD",title:"Call of Duty: Modern Warfare III",year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null, img:"imgs/call-of-duty-modern-warfare-iii.png"},
+{f:"COD",title:"Call of Duty: Black Ops 6",     year:2024,platforms:["XSX","PS5","PC"],        special:null,        img:"imgs/call-of-duty-black-ops-6-xsx.jpg"},
 
 /* ══════════════════════════════════════════════════════
    GEARS OF WAR
@@ -424,7 +417,7 @@ const games = [
 {f:"GOW",title:"Gears of War: Ultimate Edition",year:2015,platforms:["XBO","PC"],              special:"Remaster",  img:"imgs/gears-of-war-ultimate-edition.jpg"},
 {f:"GOW",title:"Gears 4",                       year:2016,platforms:["XBO","PC"],              special:null,        img:"imgs/gears-4.jpg"},
 {f:"GOW",title:"Gears 5",                       year:2019,platforms:["XBO","XSX","PC"],        special:null,        img:"imgs/gears-5.jpg"},
-{f:"GOW",title:"Gears Tactics",                 year:2020,platforms:["XBO","XSX","PC"],        special:null,        img:"imgs/gears-tactics.jpg"},
+{f:"GOW",title:"Gears Tactics",                 year:2020,platforms:["XBO","XSX","PC"],        special:null,        img:"imgs/gears-tactics-XOne-629KB.jpg"},
 {f:"GOW",title:"Gears of War E-Day",            year:2026,platforms:["XSX","PC"],              special:"Upcoming",  img:""},
 
 /* ══════════════════════════════════════════════════════
@@ -433,18 +426,17 @@ const games = [
 {f:"HALO",title:"Halo: Combat Evolved",         year:2001,platforms:["XB","PC","Mac"],         special:null,        img:"imgs/halo-combat-evolved.jpg"},
 {f:"HALO",title:"Halo 2",                       year:2004,platforms:["XB","PC"],               special:null,        img:"imgs/halo-2.jpg"},
 {f:"HALO",title:"Halo 3",                       year:2007,platforms:["X360"],                  special:null,        img:"imgs/halo-3.jpg"},
-{f:"HALO",title:"Halo 3: ODST",                 year:2009,platforms:["X360"],                  special:null,        img:"imgs/halo-3-odst.jpg"},
-{f:"HALO",title:"Halo: Reach",                  year:2010,platforms:["X360"],                  special:null,        img:"imgs/halo-reach.jpg"},
+{f:"HALO",title:"Halo 3: ODST",                 year:2009,platforms:["X360"],                  special:null,        img:"imgs/halo-3-odst-x360.jpg"},
+{f:"HALO",title:"Halo: Reach",                  year:2010,platforms:["X360"],                  special:null,        img:"imgs/halo-reach-X360-standard.jpg"},
 {f:"HALO",title:"Halo: Combat Evolved Anniversary",year:2011,platforms:["X360"],               special:"Remaster",  img:"imgs/halo-combat-evolved-anniversary.jpg"},
 {f:"HALO",title:"Halo 4",                       year:2012,platforms:["X360"],                  special:null,        img:"imgs/halo-4.jpg"},
-{f:"HALO",title:"Halo: Spartan Assault",        year:2013,platforms:["X360","XBO"],            special:null,        img:"imgs/halo-spartan-assault.jpg"},
 {f:"HALO",title:"Halo: The Master Chief Collection",year:2014,platforms:["XBO","PC"],          special:"Compilation",img:"imgs/halo-the-master-chief-collection.jpg"},
 {f:"HALO",title:"Halo 5: Guardians",            year:2015,platforms:["XBO"],                   special:null,        img:"imgs/halo-5-guardians.jpg"},
 {f:"HALO",title:"Halo Wars 2",                  year:2017,platforms:["XBO","PC"],              special:null,        img:"imgs/halo-wars-2.jpg"},
 {f:"HALO",title:"Halo Infinite",                year:2021,platforms:["XSX","XBO","PC"],        special:null,        img:"imgs/halo-infinite.jpg"},
 
 /* Halo Wars (prequel) */
-{f:"HALO",title:"Halo Wars",                    year:2009,platforms:["X360"],                  special:null,        img:"imgs/halo-wars.jpg"},
+{f:"HALO",title:"Halo Wars",                    year:2009,platforms:["X360"],                  special:null,        img:"imgs/halo-wars-platinum.jpg"},
 
 /* ══════════════════════════════════════════════════════
    BLIZZARD
@@ -456,52 +448,49 @@ const games = [
 {f:"BLZ",sub:"Warcraft",title:"Warcraft II: The Dark Saga",    year:1997,platforms:["PS1","SAT"],             special:"Port",      img:"imgs/warcraft-ii-the-dark-saga.jpg"},
 {f:"BLZ",sub:"Warcraft",title:"Warcraft III: Reign of Chaos",  year:2002,platforms:["PC","Mac"],              special:null,        img:"imgs/warcraft-iii-reign-of-chaos.jpg"},
 {f:"BLZ",sub:"Warcraft",title:"Warcraft III: The Frozen Throne",year:2003,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/warcraft-iii-the-frozen-throne.jpg"},
-{f:"BLZ",sub:"Warcraft",title:"Warcraft III: Reforged",        year:2020,platforms:["PC"],                    special:"Remaster",  img:"imgs/warcraft-iii-reforged.jpg"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft III: Reforged",        year:2020,platforms:["PC"],                    special:"Remaster",  img:"imgs/warcraft-iii-reforged.png"},
 /* World of Warcraft */
 {f:"BLZ",sub:"World of Warcraft",title:"World of Warcraft",             year:2004,platforms:["PC","Mac"],              special:null,        img:"imgs/world-of-warcraft.jpg"},
 {f:"BLZ",sub:"World of Warcraft",title:"WoW: The Burning Crusade",      year:2007,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-burning-crusade.jpg"},
-{f:"BLZ",sub:"World of Warcraft",title:"WoW: Wrath of the Lich King",   year:2008,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-wrath-of-the-lich-king.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Wrath of the Lich King",   year:2008,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-wrath-of-the-lich-king.png"},
 {f:"BLZ",sub:"World of Warcraft",title:"WoW: Cataclysm",               year:2010,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-cataclysm.jpg"},
 {f:"BLZ",sub:"World of Warcraft",title:"WoW: Mists of Pandaria",        year:2012,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-mists-of-pandaria.jpg"},
 {f:"BLZ",sub:"World of Warcraft",title:"WoW: Warlords of Draenor",      year:2014,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-warlords-of-draenor.jpg"},
-{f:"BLZ",sub:"World of Warcraft",title:"WoW: Legion",                   year:2016,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-legion.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Legion",                   year:2016,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-legion-35680.jpg"},
 {f:"BLZ",sub:"World of Warcraft",title:"WoW: Battle for Azeroth",       year:2018,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-battle-for-azeroth.png"},
 {f:"BLZ",sub:"World of Warcraft",title:"WoW: Shadowlands",              year:2020,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-shadowlands.jpg"},
 {f:"BLZ",sub:"World of Warcraft",title:"WoW: Dragonflight",             year:2022,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-dragonflight.jpg"},
-{f:"BLZ",sub:"World of Warcraft",title:"WoW: The War Within",           year:2024,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-war-within.png"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: The War Within",           year:2024,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-war-within.jpg"},
 /* Diablo */
-{f:"BLZ",sub:"Diablo",title:"Diablo",                        year:1996,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/diablo.png"},
+{f:"BLZ",sub:"Diablo",title:"Diablo",                        year:1996,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/diablo.jpg"},
 {f:"BLZ",sub:"Diablo",title:"Diablo: Hellfire",              year:1997,platforms:["PC"],                    special:"Expansion", img:"imgs/diablo-hellfire.jpg"},
-{f:"BLZ",sub:"Diablo",title:"Diablo II",                     year:2000,platforms:["PC","Mac"],              special:null,        img:"imgs/diablo-ii.png"},
-{f:"BLZ",sub:"Diablo",title:"Diablo II: Lord of Destruction", year:2001,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/diablo-ii-lord-of-destruction.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo II",                     year:2000,platforms:["PC","Mac"],              special:null,        img:"imgs/diablo-ii.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo II: Lord of Destruction", year:2001,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/diablo-ii-lord-of-destruction-tgdb.jpg"},
 {f:"BLZ",sub:"Diablo",title:"Diablo III",                    year:2012,platforms:["PC","X360","XBO","PS3","PS4","NSW","Mac"],special:null,img:"imgs/diablo-iii.png"},
 {f:"BLZ",sub:"Diablo",title:"Diablo III: Reaper of Souls",   year:2014,platforms:["PC","X360","XBO","PS3","PS4","Mac"],special:"Expansion",img:"imgs/diablo-iii-reaper-of-souls.jpg"},
 {f:"BLZ",sub:"Diablo",title:"Diablo III: Rise of the Necromancer",year:2017,platforms:["PC","X360","XBO","PS3","PS4"],special:"Expansion",img:""},
 {f:"BLZ",sub:"Diablo",title:"Diablo II: Resurrected",        year:2021,platforms:["XSX","XBO","PS5","PS4","NSW","PC"],special:"Remaster",img:"imgs/diablo-ii-resurrected.jpg"},
-{f:"BLZ",sub:"Diablo",title:"Diablo IV",                     year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/diablo-iv.jpg"},
-{f:"BLZ",sub:"Diablo",title:"Diablo IV: Vessel of Hatred",   year:2024,platforms:["XSX","XBO","PS5","PS4","PC"],special:"Expansion",img:"imgs/diablo-iv-vessel-of-hatred.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo IV",                     year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/diablo-iv-ps5.jpg"},
 /* StarCraft */
-{f:"BLZ",sub:"StarCraft",title:"StarCraft",                     year:1998,platforms:["PC","Mac","N64"],        special:null,        img:"imgs/starcraft.jpg"},
-{f:"BLZ",sub:"StarCraft",title:"StarCraft: Brood War",          year:1998,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/starcraft-brood-war.png"},
-{f:"BLZ",sub:"StarCraft",title:"StarCraft: 64",                 year:2000,platforms:["N64"],                   special:"Port",      img:"imgs/starcraft-64.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft",                     year:1998,platforms:["PC","Mac","N64"],        special:null,        img:"imgs/starcraft.png"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft: Brood War",          year:1998,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/starcraft-brood-war.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft: 64",                 year:2000,platforms:["N64"],                   special:"Port",      img:"imgs/starcraft-64.png"},
 {f:"BLZ",sub:"StarCraft",title:"StarCraft II: Wings of Liberty",year:2010,platforms:["PC","Mac"],              special:null,        img:"imgs/starcraft-ii-wings-of-liberty.jpg"},
-{f:"BLZ",sub:"StarCraft",title:"StarCraft II: Heart of the Swarm",year:2013,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-heart-of-the-swarm.jpg"},
-{f:"BLZ",sub:"StarCraft",title:"StarCraft II: Legacy of the Void",year:2015,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-legacy-of-the-void.jpg"},
-{f:"BLZ",sub:"StarCraft",title:"StarCraft: Remastered",         year:2017,platforms:["PC","Mac"],              special:"Remaster",  img:"imgs/starcraft-remastered.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft II: Heart of the Swarm",year:2013,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-heart-of-the-swarm-PC-119KB.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft II: Legacy of the Void",year:2015,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-legacy-of-the-void-tgdb.jpg"},
+
 /* Overwatch */
 {f:"BLZ",sub:"Overwatch",title:"Overwatch: Origins Edition",    year:2016,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/overwatch-origins-edition.jpg"},
-{f:"BLZ",sub:"Overwatch",title:"Overwatch: Legendary Edition",  year:2018,platforms:["XBO","PS4","NSW","PC"],  special:null,        img:"imgs/overwatch-legendary-edition.jpg"},
+{f:"BLZ",sub:"Overwatch",title:"Overwatch: Legendary Edition",  year:2018,platforms:["XBO","PS4","NSW","PC"],  special:null,        img:"imgs/overwatch-legendary-edition-ps4.jpg"},
 /* Hearthstone */
-{f:"BLZ",sub:"Hearthstone",title:"Hearthstone (No Physical Release)",year:2014,platforms:["PC"],              special:"Digital Only",img:""},
 /* Heroes of the Storm */
 {f:"BLZ",sub:"Heroes of the Storm",title:"Heroes of the Storm (Starter Pack)",year:2015,platforms:["PC"],     special:null,        img:""},
 /* Classics */
-{f:"BLZ",sub:"Classics",title:"Blackthorne",                   year:1994,platforms:["PC","SNES","32X","GBA"], special:null,        img:"imgs/blackthorne.png"},
+{f:"BLZ",sub:"Classics",title:"Blackthorne",                   year:1994,platforms:["PC","SNES","32X","GBA"], special:null,        img:"imgs/blackthorne-32x.jpg"},
 {f:"BLZ",sub:"Classics",title:"The Lost Vikings",              year:1993,platforms:["PC","SNES","MD","GBA"],  special:null,        img:"imgs/the-lost-vikings.jpg"},
-{f:"BLZ",sub:"Classics",title:"The Lost Vikings 2",            year:1997,platforms:["PC","SNES","PS1"],       special:null,        img:"imgs/the-lost-vikings-2.jpg"},
+{f:"BLZ",sub:"Classics",title:"The Lost Vikings 2",            year:1997,platforms:["PC","SNES","PS1"],       special:null,        img:"imgs/the-lost-vikings-2-pc.jpg"},
 {f:"BLZ",sub:"Classics",title:"Rock n' Roll Racing",           year:1993,platforms:["SNES","MD"],             special:null,        img:"imgs/rock-n-roll-racing.jpg"},
 /* Diablo Immortal */
-{f:"BLZ",sub:"Diablo",title:"Diablo Immortal (No Physical)",   year:2022,platforms:["PC"],                    special:"Digital Only",img:""},
 ];
 
 /* ─── CONFIG ─────────────────────────────────── */
@@ -602,24 +591,12 @@ function makeCard(data,delay){
   if(!data.img){img.style.display="none";ph.style.display="flex";}
   imgA.appendChild(ph); imgA.appendChild(img);
 
-  // franchise badge — show sub-series for Blizzard
-  const fbadge=document.createElement("div"); fbadge.className="fbadge";
-  if(data.f==="BLZ"&&data.sub){
-    const sc=blzSubColors[data.sub]||fc;
-    fbadge.style.background=sc; fbadge.style.color="#fff";
-    fbadge.textContent=data.sub;
-  } else {
-    fbadge.style.background=fc; fbadge.style.color="#fff";
-    fbadge.textContent=franchises[data.f]?.name||data.f;
-  }
-  imgA.appendChild(fbadge);
-
   // special badge
   if(data.special){
     const pb=document.createElement("div"); pb.className="pbadge";
-    const sc=data.special==="Remaster"?"rgba(241,196,15,0.25)":data.special==="Expansion"?"rgba(155,89,182,0.25)":"rgba(52,152,219,0.2)";
-    const stc=data.special==="Remaster"?"#f1c40f":data.special==="Expansion"?"#c39bd3":"#7fb3d3";
-    pb.style.cssText="background:"+sc+";color:"+stc+";border:1px solid "+stc+"44";
+    const sc=data.special==="Remaster"?"#9a6f00":data.special==="Expansion"?"#5c2d91":data.special==="Booster"?"#1a5276":data.special==="Port"?"#1e6b2f":data.special==="Compilation"?"#7b241c":"#1a5276";
+    const stc="#ffffff";
+    pb.style.cssText="background:"+sc+";color:#fff;font-weight:800;border:none";
     pb.textContent=data.special;
     imgA.appendChild(pb);
   }
