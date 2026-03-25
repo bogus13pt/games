@@ -183,6 +183,18 @@ input[type="text"]::placeholder{color:var(--muted);}
 }
 .ylbl::after{content:'';flex:1;height:1px;background:rgba(82,176,67,0.07);}
 
+/* ── BLIZZARD SUB-SERIES LABEL ── */
+.slabel-sub{
+  position:relative;z-index:1;max-width:1320px;margin:22px auto 12px;
+  padding:0 20px 0 32px;display:flex;align-items:center;gap:14px;
+}
+.slabel-sub-inner{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(12,18,28,0.7);border:1px solid rgba(255,255,255,0.08);
+  border-radius:5px;padding:5px 14px;white-space:nowrap;
+}
+.slabel-sub::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+
 /* ── GRID ── */
 .grid{
   position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:0 20px;
@@ -438,62 +450,58 @@ const games = [
    BLIZZARD
 ══════════════════════════════════════════════════════ */
 /* Warcraft */
-{f:"BLZ",title:"Warcraft: Orcs & Humans",       year:1994,platforms:["PC"],                    special:null,        img:"imgs/warcraft-orcs-and-humans.png"},
-{f:"BLZ",title:"Warcraft II: Tides of Darkness",year:1995,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/warcraft-ii-tides-of-darkness.jpg"},
-{f:"BLZ",title:"Warcraft II: Beyond the Dark Portal",year:1996,platforms:["PC"],               special:"Expansion", img:"imgs/warcraft-ii-beyond-the-dark-portal.jpg"},
-{f:"BLZ",title:"Warcraft II: The Dark Saga",    year:1997,platforms:["PS1","SAT"],             special:"Port",      img:"imgs/warcraft-ii-the-dark-saga.jpg"},
-{f:"BLZ",title:"Warcraft III: Reign of Chaos",  year:2002,platforms:["PC","Mac"],              special:null,        img:"imgs/warcraft-iii-reign-of-chaos.jpg"},
-{f:"BLZ",title:"Warcraft III: The Frozen Throne",year:2003,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/warcraft-iii-the-frozen-throne.jpg"},
-{f:"BLZ",title:"Warcraft III: Reforged",        year:2020,platforms:["PC"],                    special:"Remaster",  img:"imgs/warcraft-iii-reforged.jpg"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft: Orcs & Humans",       year:1994,platforms:["PC"],                    special:null,        img:"imgs/warcraft-orcs-and-humans.png"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft II: Tides of Darkness",year:1995,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/warcraft-ii-tides-of-darkness.jpg"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft II: Beyond the Dark Portal",year:1996,platforms:["PC"],               special:"Expansion", img:"imgs/warcraft-ii-beyond-the-dark-portal.jpg"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft II: The Dark Saga",    year:1997,platforms:["PS1","SAT"],             special:"Port",      img:"imgs/warcraft-ii-the-dark-saga.jpg"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft III: Reign of Chaos",  year:2002,platforms:["PC","Mac"],              special:null,        img:"imgs/warcraft-iii-reign-of-chaos.jpg"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft III: The Frozen Throne",year:2003,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/warcraft-iii-the-frozen-throne.jpg"},
+{f:"BLZ",sub:"Warcraft",title:"Warcraft III: Reforged",        year:2020,platforms:["PC"],                    special:"Remaster",  img:"imgs/warcraft-iii-reforged.jpg"},
 /* World of Warcraft */
-{f:"BLZ",title:"World of Warcraft",             year:2004,platforms:["PC","Mac"],              special:null,        img:"imgs/world-of-warcraft.jpg"},
-{f:"BLZ",title:"WoW: The Burning Crusade",      year:2007,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-burning-crusade.jpg"},
-{f:"BLZ",title:"WoW: Wrath of the Lich King",   year:2008,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-wrath-of-the-lich-king.jpg"},
-{f:"BLZ",title:"WoW: Cataclysm",               year:2010,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-cataclysm.jpg"},
-{f:"BLZ",title:"WoW: Mists of Pandaria",        year:2012,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-mists-of-pandaria.jpg"},
-{f:"BLZ",title:"WoW: Warlords of Draenor",      year:2014,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-warlords-of-draenor.jpg"},
-{f:"BLZ",title:"WoW: Legion",                   year:2016,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-legion.jpg"},
-{f:"BLZ",title:"WoW: Battle for Azeroth",       year:2018,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-battle-for-azeroth.png"},
-{f:"BLZ",title:"WoW: Shadowlands",              year:2020,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-shadowlands.jpg"},
-{f:"BLZ",title:"WoW: Dragonflight",             year:2022,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-dragonflight.jpg"},
-{f:"BLZ",title:"WoW: The War Within",           year:2024,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-war-within.png"},
+{f:"BLZ",sub:"World of Warcraft",title:"World of Warcraft",             year:2004,platforms:["PC","Mac"],              special:null,        img:"imgs/world-of-warcraft.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: The Burning Crusade",      year:2007,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-burning-crusade.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Wrath of the Lich King",   year:2008,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-wrath-of-the-lich-king.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Cataclysm",               year:2010,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-cataclysm.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Mists of Pandaria",        year:2012,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-mists-of-pandaria.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Warlords of Draenor",      year:2014,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-warlords-of-draenor.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Legion",                   year:2016,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-legion.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Battle for Azeroth",       year:2018,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-battle-for-azeroth.png"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Shadowlands",              year:2020,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-shadowlands.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: Dragonflight",             year:2022,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-dragonflight.jpg"},
+{f:"BLZ",sub:"World of Warcraft",title:"WoW: The War Within",           year:2024,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/wow-the-war-within.png"},
 /* Diablo */
-{f:"BLZ",title:"Diablo",                        year:1996,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/diablo.png"},
-{f:"BLZ",title:"Diablo: Hellfire",              year:1997,platforms:["PC"],                    special:"Expansion", img:"imgs/diablo-hellfire.jpg"},
-{f:"BLZ",title:"Diablo II",                     year:2000,platforms:["PC","Mac"],              special:null,        img:"imgs/diablo-ii.png"},
-{f:"BLZ",title:"Diablo II: Lord of Destruction", year:2001,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/diablo-ii-lord-of-destruction.jpg"},
-{f:"BLZ",title:"Diablo III",                    year:2012,platforms:["PC","X360","XBO","PS3","PS4","NSW","Mac"],special:null,img:"imgs/diablo-iii.png"},
-{f:"BLZ",title:"Diablo III: Reaper of Souls",   year:2014,platforms:["PC","X360","XBO","PS3","PS4","Mac"],special:"Expansion",img:"imgs/diablo-iii-reaper-of-souls.jpg"},
-{f:"BLZ",title:"Diablo III: Rise of the Necromancer",year:2017,platforms:["PC","X360","XBO","PS3","PS4"],special:"Expansion",img:""},
-{f:"BLZ",title:"Diablo II: Resurrected",        year:2021,platforms:["XSX","XBO","PS5","PS4","NSW","PC"],special:"Remaster",img:"imgs/diablo-ii-resurrected.jpg"},
-{f:"BLZ",title:"Diablo IV",                     year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/diablo-iv.jpg"},
-{f:"BLZ",title:"Diablo IV: Vessel of Hatred",   year:2024,platforms:["XSX","XBO","PS5","PS4","PC"],special:"Expansion",img:"imgs/diablo-iv-vessel-of-hatred.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo",                        year:1996,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/diablo.png"},
+{f:"BLZ",sub:"Diablo",title:"Diablo: Hellfire",              year:1997,platforms:["PC"],                    special:"Expansion", img:"imgs/diablo-hellfire.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo II",                     year:2000,platforms:["PC","Mac"],              special:null,        img:"imgs/diablo-ii.png"},
+{f:"BLZ",sub:"Diablo",title:"Diablo II: Lord of Destruction", year:2001,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/diablo-ii-lord-of-destruction.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo III",                    year:2012,platforms:["PC","X360","XBO","PS3","PS4","NSW","Mac"],special:null,img:"imgs/diablo-iii.png"},
+{f:"BLZ",sub:"Diablo",title:"Diablo III: Reaper of Souls",   year:2014,platforms:["PC","X360","XBO","PS3","PS4","Mac"],special:"Expansion",img:"imgs/diablo-iii-reaper-of-souls.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo III: Rise of the Necromancer",year:2017,platforms:["PC","X360","XBO","PS3","PS4"],special:"Expansion",img:""},
+{f:"BLZ",sub:"Diablo",title:"Diablo II: Resurrected",        year:2021,platforms:["XSX","XBO","PS5","PS4","NSW","PC"],special:"Remaster",img:"imgs/diablo-ii-resurrected.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo IV",                     year:2023,platforms:["XSX","XBO","PS5","PS4","PC"],special:null,    img:"imgs/diablo-iv.jpg"},
+{f:"BLZ",sub:"Diablo",title:"Diablo IV: Vessel of Hatred",   year:2024,platforms:["XSX","XBO","PS5","PS4","PC"],special:"Expansion",img:"imgs/diablo-iv-vessel-of-hatred.jpg"},
 /* StarCraft */
-{f:"BLZ",title:"StarCraft",                     year:1998,platforms:["PC","Mac","N64"],        special:null,        img:"imgs/starcraft.jpg"},
-{f:"BLZ",title:"StarCraft: Brood War",          year:1998,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/starcraft-brood-war.png"},
-{f:"BLZ",title:"StarCraft: 64",                 year:2000,platforms:["N64"],                   special:"Port",      img:"imgs/starcraft-64.jpg"},
-{f:"BLZ",title:"StarCraft II: Wings of Liberty",year:2010,platforms:["PC","Mac"],              special:null,        img:"imgs/starcraft-ii-wings-of-liberty.jpg"},
-{f:"BLZ",title:"StarCraft II: Heart of the Swarm",year:2013,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-heart-of-the-swarm.jpg"},
-{f:"BLZ",title:"StarCraft II: Legacy of the Void",year:2015,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-legacy-of-the-void.jpg"},
-{f:"BLZ",title:"StarCraft: Remastered",         year:2017,platforms:["PC","Mac"],              special:"Remaster",  img:"imgs/starcraft-remastered.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft",                     year:1998,platforms:["PC","Mac","N64"],        special:null,        img:"imgs/starcraft.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft: Brood War",          year:1998,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/starcraft-brood-war.png"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft: 64",                 year:2000,platforms:["N64"],                   special:"Port",      img:"imgs/starcraft-64.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft II: Wings of Liberty",year:2010,platforms:["PC","Mac"],              special:null,        img:"imgs/starcraft-ii-wings-of-liberty.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft II: Heart of the Swarm",year:2013,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-heart-of-the-swarm.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft II: Legacy of the Void",year:2015,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-legacy-of-the-void.jpg"},
+{f:"BLZ",sub:"StarCraft",title:"StarCraft: Remastered",         year:2017,platforms:["PC","Mac"],              special:"Remaster",  img:"imgs/starcraft-remastered.jpg"},
 /* Overwatch */
-{f:"BLZ",title:"Overwatch: Origins Edition",    year:2016,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/overwatch-origins-edition.jpg"},
-{f:"BLZ",title:"Overwatch: Legendary Edition",  year:2018,platforms:["XBO","PS4","NSW","PC"],  special:null,        img:"imgs/overwatch-legendary-edition.jpg"},
+{f:"BLZ",sub:"Overwatch",title:"Overwatch: Origins Edition",    year:2016,platforms:["XBO","PS4","PC"],        special:null,        img:"imgs/overwatch-origins-edition.jpg"},
+{f:"BLZ",sub:"Overwatch",title:"Overwatch: Legendary Edition",  year:2018,platforms:["XBO","PS4","NSW","PC"],  special:null,        img:"imgs/overwatch-legendary-edition.jpg"},
 /* Hearthstone */
-{f:"BLZ",title:"Hearthstone (No Physical Release)",year:2014,platforms:["PC"],                 special:"Digital Only",img:""},
+{f:"BLZ",sub:"Hearthstone",title:"Hearthstone (No Physical Release)",year:2014,platforms:["PC"],              special:"Digital Only",img:""},
 /* Heroes of the Storm */
-{f:"BLZ",title:"Heroes of the Storm (Starter Pack)",year:2015,platforms:["PC"],               special:null,        img:""},
-/* Blackthorne */
-{f:"BLZ",title:"Blackthorne",                   year:1994,platforms:["PC","SNES","32X","GBA"], special:null,        img:"imgs/blackthorne.png"},
-/* The Lost Vikings */
-{f:"BLZ",title:"The Lost Vikings",              year:1993,platforms:["PC","SNES","MD","GBA"],  special:null,        img:"imgs/the-lost-vikings.jpg"},
-{f:"BLZ",title:"The Lost Vikings 2",            year:1997,platforms:["PC","SNES","PS1"],       special:null,        img:"imgs/the-lost-vikings-2.jpg"},
-/* Rock n Roll Racing */
-{f:"BLZ",title:"Rock n' Roll Racing",           year:1993,platforms:["SNES","MD"],             special:null,        img:"imgs/rock-n-roll-racing.jpg"},
-/* Scarlett Ribbons */
-// skipped - lesser known
+{f:"BLZ",sub:"Heroes of the Storm",title:"Heroes of the Storm (Starter Pack)",year:2015,platforms:["PC"],     special:null,        img:""},
+/* Classics */
+{f:"BLZ",sub:"Classics",title:"Blackthorne",                   year:1994,platforms:["PC","SNES","32X","GBA"], special:null,        img:"imgs/blackthorne.png"},
+{f:"BLZ",sub:"Classics",title:"The Lost Vikings",              year:1993,platforms:["PC","SNES","MD","GBA"],  special:null,        img:"imgs/the-lost-vikings.jpg"},
+{f:"BLZ",sub:"Classics",title:"The Lost Vikings 2",            year:1997,platforms:["PC","SNES","PS1"],       special:null,        img:"imgs/the-lost-vikings-2.jpg"},
+{f:"BLZ",sub:"Classics",title:"Rock n' Roll Racing",           year:1993,platforms:["SNES","MD"],             special:null,        img:"imgs/rock-n-roll-racing.jpg"},
 /* Diablo Immortal */
-{f:"BLZ",title:"Diablo Immortal (No Physical)", year:2022,platforms:["PC"],                    special:"Digital Only",img:""},
+{f:"BLZ",sub:"Diablo",title:"Diablo Immortal (No Physical)",   year:2022,platforms:["PC"],                    special:"Digital Only",img:""},
 ];
 
 /* ─── CONFIG ─────────────────────────────────── */
@@ -523,6 +531,17 @@ const platformLabel={
 };
 
 const fOrder=["All","BF","COD","GOW","HALO","BLZ"];
+const blzSubOrder=["Warcraft","World of Warcraft","Diablo","StarCraft","Overwatch","Hearthstone","Heroes of the Storm","Classics"];
+const blzSubColors={
+  "Warcraft":          "#f59e0b",
+  "World of Warcraft": "#0ea5e9",
+  "Diablo":            "#dc2626",
+  "StarCraft":         "#6366f1",
+  "Overwatch":         "#f97316",
+  "Hearthstone":       "#eab308",
+  "Heroes of the Storm":"#8b5cf6",
+  "Classics":          "#6b7280",
+};
 const allPlatforms=[...new Set(games.flatMap(g=>g.platforms))].sort((a,b)=>{
   const order=["XSX","XBO","X360","XB","PS5","PS4","PS3","PS2","PS1","PSP","PSV","PC","Mac","NSW","WiiU","Wii","GCN","3DS","NDS","GBA","N64","SNES","MD","SAT","32X"];
   return (order.indexOf(a)<0?99:order.indexOf(a))-(order.indexOf(b)<0?99:order.indexOf(b));
@@ -583,10 +602,16 @@ function makeCard(data,delay){
   if(!data.img){img.style.display="none";ph.style.display="flex";}
   imgA.appendChild(ph); imgA.appendChild(img);
 
-  // franchise badge
+  // franchise badge — show sub-series for Blizzard
   const fbadge=document.createElement("div"); fbadge.className="fbadge";
-  fbadge.style.background=fc; fbadge.style.color="#fff";
-  fbadge.textContent=franchises[data.f]?.name||data.f;
+  if(data.f==="BLZ"&&data.sub){
+    const sc=blzSubColors[data.sub]||fc;
+    fbadge.style.background=sc; fbadge.style.color="#fff";
+    fbadge.textContent=data.sub;
+  } else {
+    fbadge.style.background=fc; fbadge.style.color="#fff";
+    fbadge.textContent=franchises[data.f]?.name||data.f;
+  }
   imgA.appendChild(fbadge);
 
   // special badge
@@ -620,7 +645,8 @@ function makeCard(data,delay){
   body.innerHTML=`<div class="cyear">${data.year}</div><div class="cname">${data.title}</div><div class="ctags">${pTags}${data.special&&data.special!=="Digital Only"&&data.special!=="Upcoming"?`<span class="etag">${data.special}</span>`:""}</div>`;
   card.appendChild(body);
 
-  card.addEventListener("mouseenter",()=>{card.style.borderColor=fc+"55";card.style.boxShadow="0 16px 40px "+fc+"20";});
+  const hoverCol=(data.f==="BLZ"&&data.sub)?(blzSubColors[data.sub]||fc):fc;
+  card.addEventListener("mouseenter",()=>{card.style.borderColor=hoverCol+"55";card.style.boxShadow="0 16px 40px "+hoverCol+"20";});
   card.addEventListener("mouseleave",()=>{card.style.borderColor="";card.style.boxShadow="";});
   return card;
 }
@@ -632,7 +658,7 @@ function render(){
   const filtered=games.filter(g=>{
     if(activeFranchise!=="All"&&g.f!==activeFranchise) return false;
     if(activePlatform!=="All"&&!g.platforms.includes(activePlatform)) return false;
-    if(q&&!(g.title.toLowerCase().includes(q)||String(g.year).includes(q)||(g.special||"").toLowerCase().includes(q)||franchises[g.f]?.name.toLowerCase().includes(q)||(g.platforms.map(p=>platformLabel[p]||p).join(" ").toLowerCase().includes(q)))) return false;
+    if(q&&!(g.title.toLowerCase().includes(q)||String(g.year).includes(q)||(g.special||"").toLowerCase().includes(q)||franchises[g.f]?.name.toLowerCase().includes(q)||(g.sub||"").toLowerCase().includes(q)||(g.platforms.map(p=>platformLabel[p]||p).join(" ").toLowerCase().includes(q)))) return false;
     return true;
   });
 
@@ -650,12 +676,35 @@ function render(){
       const items=byFranchise[f]||[];
       if(!items.length) return;
       const fc=franchises[f].col;
+
+      // Franchise header
       const lbl=document.createElement("div"); lbl.className="slabel";
       lbl.innerHTML=`<div class="slabel-inner"><div class="sdot" style="background:${fc};box-shadow:0 0 8px ${fc}88"></div><span class="stxt" style="color:${fc}">${franchises[f].name}</span><span class="scnt">${items.length} titles</span></div>`;
       out.appendChild(lbl);
-      const grid=document.createElement("div"); grid.className="grid"+(viewMode==="list"?" lv":"");
-      items.sort((a,b)=>a.year-b.year).forEach(g=>grid.appendChild(makeCard(g,Math.min(globalIdx++*0.008,0.35))));
-      out.appendChild(grid);
+
+      if(f==="BLZ"){
+        // Group Blizzard by sub-series
+        const bySub={};
+        items.forEach(g=>{
+          const s=g.sub||"Other";
+          (bySub[s]=bySub[s]||[]).push(g);
+        });
+        blzSubOrder.forEach(sub=>{
+          const subItems=bySub[sub];
+          if(!subItems||!subItems.length) return;
+          const sc=blzSubColors[sub]||"#888";
+          const sublbl=document.createElement("div"); sublbl.className="slabel-sub";
+          sublbl.innerHTML=`<div class="slabel-sub-inner"><div class="sdot" style="background:${sc};width:7px;height:7px;box-shadow:0 0 6px ${sc}99"></div><span style="color:${sc};font-family:'Teko',sans-serif;font-size:14px;letter-spacing:3px;text-transform:uppercase">${sub}</span><span class="scnt">${subItems.length} titles</span></div>`;
+          out.appendChild(sublbl);
+          const grid=document.createElement("div"); grid.className="grid"+(viewMode==="list"?" lv":"");
+          subItems.sort((a,b)=>a.year-b.year).forEach(g=>grid.appendChild(makeCard(g,Math.min(globalIdx++*0.008,0.35))));
+          out.appendChild(grid);
+        });
+      } else {
+        const grid=document.createElement("div"); grid.className="grid"+(viewMode==="list"?" lv":"");
+        items.sort((a,b)=>a.year-b.year).forEach(g=>grid.appendChild(makeCard(g,Math.min(globalIdx++*0.008,0.35))));
+        out.appendChild(grid);
+      }
     });
   }
   document.getElementById("countPill").textContent=`Showing ${filtered.length} title${filtered.length!==1?"s":""}`;
