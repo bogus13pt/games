@@ -645,6 +645,7 @@ function render(){
     fOrder.filter(f=>f!=="All").forEach(f=>{byFranchise[f]=[];});
     filtered.forEach(g=>(byFranchise[g.f]=byFranchise[g.f]||[]).push(g));
 
+    let globalIdx=0;
     fOrder.filter(f=>f!=="All").forEach(f=>{
       const items=byFranchise[f]||[];
       if(!items.length) return;
@@ -652,20 +653,9 @@ function render(){
       const lbl=document.createElement("div"); lbl.className="slabel";
       lbl.innerHTML=`<div class="slabel-inner"><div class="sdot" style="background:${fc};box-shadow:0 0 8px ${fc}88"></div><span class="stxt" style="color:${fc}">${franchises[f].name}</span><span class="scnt">${items.length} titles</span></div>`;
       out.appendChild(lbl);
-
-      // group by decade/era
-      const byYear={};
-      items.forEach(g=>{const era=Math.floor(g.year/10)*10;(byYear[era]=byYear[era]||[]).push(g);});
-      let idx=0;
-      Object.keys(byYear).sort().forEach(era=>{
-        const list=byYear[era];
-        const sublbl=document.createElement("div"); sublbl.className="ylbl";
-        sublbl.textContent=era+"s";
-        out.appendChild(sublbl);
-        const grid=document.createElement("div"); grid.className="grid"+(viewMode==="list"?" lv":"");
-        list.sort((a,b)=>a.year-b.year).forEach(g=>grid.appendChild(makeCard(g,Math.min(idx++*0.012,0.35))));
-        out.appendChild(grid);
-      });
+      const grid=document.createElement("div"); grid.className="grid"+(viewMode==="list"?" lv":"");
+      items.sort((a,b)=>a.year-b.year).forEach(g=>grid.appendChild(makeCard(g,Math.min(globalIdx++*0.008,0.35))));
+      out.appendChild(grid);
     });
   }
   document.getElementById("countPill").textContent=`Showing ${filtered.length} title${filtered.length!==1?"s":""}`;
