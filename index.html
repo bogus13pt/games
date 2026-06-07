@@ -339,6 +339,11 @@ input[type="text"]::placeholder{color:var(--muted);}
       <div class="opill" id="ownedCount">✓ 0 owned</div>
       <div class="cpill" id="countPill">Showing 0 items</div>
     </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="exportOwned()" title="Export collection" style="font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border-radius:4px;border:1px solid rgba(82,176,67,0.35);background:rgba(82,176,67,0.08);color:#52b043;cursor:pointer;">↑ Export</button>
+      <button onclick="document.getElementById('importFile').click()" title="Import collection" style="font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border-radius:4px;border:1px solid rgba(82,176,67,0.35);background:rgba(82,176,67,0.08);color:#52b043;cursor:pointer;">↓ Import</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importOwned(event)">
+    </div>
     <div class="vtog">
       <button class="vbtn active" id="gvBtn" title="Grid" onclick="setView('grid')">⊞</button>
       <button class="vbtn" id="lvBtn" title="List" onclick="setView('list')">☰</button>
@@ -372,7 +377,7 @@ const games = [
 {f:"BF",title:"Battlefield 2142",              year:2006,platforms:["PC"],                     special:null,        img:"imgs/battlefield-2142.jpg"},
 {f:"BF",title:"Battlefield: Bad Company",      year:2008,platforms:["X360","PS3"],              special:null,        img:"imgs/battlefield-bad-company.jpg"},
 {f:"BF",title:"Battlefield: Bad Company 2",    year:2010,platforms:["X360","PS3","PC"],         special:null,        img:"imgs/battlefield-bad-company-2.jpg"},
-{f:"BF",title:"Battlefield: Bad Company 2 Vietnam",year:2010,platforms:["X360","PS3","PC"],    special:"Expansion", img:"imgs/battlefield-bad-company-2-vietnam.jpg"},
+
 {f:"BF",title:"Battlefield 3",                 year:2011,platforms:["X360","PS3","PC"],         special:null,        img:"imgs/battlefield-3.jpg"},
 
 {f:"BF",title:"Battlefield 4",                 year:2013,platforms:["X360","XBO","PS3","PS4","PC"],special:null,    img:"imgs/battlefield-4.jpg"},
@@ -385,7 +390,7 @@ const games = [
    CALL OF DUTY
 ══════════════════════════════════════════════════════ */
 {f:"COD",title:"Call of Duty",                  year:2003,platforms:["PC"],                    special:null,        img:"imgs/call-of-duty.jpg"},
-{f:"COD",title:"Call of Duty: United Offensive", year:2004,platforms:["PC"],                   special:"Expansion", img:"imgs/call-of-duty-united-offensive.jpg"},
+
 {f:"COD",title:"Call of Duty 2",                year:2005,platforms:["X360","PC"],             special:null,        img:"imgs/call-of-duty-2.jpg"},
 {f:"COD",title:"Call of Duty 3",                year:2006,platforms:["X360","XB","PS3","PS2","Wii"],special:null,  img:"imgs/call-of-duty-3.jpg"},
 {f:"COD",title:"Call of Duty 4: Modern Warfare",year:2007,platforms:["X360","PS3","PC","Wii","NDS"],special:null,  img:"imgs/call-of-duty-4-modern-warfare-x360b.jpg"},
@@ -445,7 +450,7 @@ const games = [
 {f:"BLZ",sub:"Warcraft",title:"Warcraft: Orcs & Humans",       year:1994,platforms:["PC"],                    special:null,        img:"imgs/warcraft-orcs-and-humans.png"},
 {f:"BLZ",sub:"Warcraft",title:"Warcraft II: Tides of Darkness",year:1995,platforms:["PC","PS1","Mac"],        special:null,        img:"imgs/warcraft-ii-tides-of-darkness.jpg"},
 {f:"BLZ",sub:"Warcraft",title:"Warcraft II: Beyond the Dark Portal",year:1996,platforms:["PC"],               special:"Expansion", img:"imgs/warcraft-ii-beyond-the-dark-portal.jpg"},
-{f:"BLZ",sub:"Warcraft",title:"Warcraft II: The Dark Saga",    year:1997,platforms:["PS1","SAT"],             special:"Port",      img:"imgs/warcraft-ii-the-dark-saga.jpg"},
+
 {f:"BLZ",sub:"Warcraft",title:"Warcraft III: Reign of Chaos",  year:2002,platforms:["PC","Mac"],              special:null,        img:"imgs/warcraft-iii-reign-of-chaos.jpg"},
 {f:"BLZ",sub:"Warcraft",title:"Warcraft III: The Frozen Throne",year:2003,platforms:["PC","Mac"],             special:"Expansion", img:"imgs/warcraft-iii-the-frozen-throne.jpg"},
 {f:"BLZ",sub:"Warcraft",title:"Warcraft III: Reforged",        year:2020,platforms:["PC"],                    special:"Remaster",  img:"imgs/warcraft-iii-reforged.png"},
@@ -474,7 +479,7 @@ const games = [
 /* StarCraft */
 {f:"BLZ",sub:"StarCraft",title:"StarCraft",                     year:1998,platforms:["PC","Mac","N64"],        special:null,        img:"imgs/starcraft.png"},
 {f:"BLZ",sub:"StarCraft",title:"StarCraft: Brood War",          year:1998,platforms:["PC","Mac"],              special:"Expansion", img:"imgs/starcraft-brood-war.jpg"},
-{f:"BLZ",sub:"StarCraft",title:"StarCraft: 64",                 year:2000,platforms:["N64"],                   special:"Port",      img:"imgs/starcraft-64.png"},
+
 {f:"BLZ",sub:"StarCraft",title:"StarCraft II: Wings of Liberty",year:2010,platforms:["PC","Mac"],              special:null,        img:"imgs/starcraft-ii-wings-of-liberty.jpg"},
 {f:"BLZ",sub:"StarCraft",title:"StarCraft II: Heart of the Swarm",year:2013,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-heart-of-the-swarm-PC-119KB.jpg"},
 {f:"BLZ",sub:"StarCraft",title:"StarCraft II: Legacy of the Void",year:2015,platforms:["PC","Mac"],            special:"Expansion", img:"imgs/starcraft-ii-legacy-of-the-void-tgdb.jpg"},
@@ -703,6 +708,38 @@ function setView(mode){
   document.getElementById("gvBtn").classList.toggle("active",mode==="grid");
   document.getElementById("lvBtn").classList.toggle("active",mode==="list");
   render();
+}
+
+/* ─── EXPORT / IMPORT ─── */
+function exportOwned(){
+  const data = { version:1, exported: new Date().toISOString(), owned: [...owned] };
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "games-collection-" + new Date().toISOString().slice(0,10) + ".json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importOwned(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      const list = data.owned || data; // support both formats
+      if(!Array.isArray(list)) throw new Error("Invalid format");
+      owned = new Set(list);
+      localStorage.setItem("owned", JSON.stringify([...owned]));
+      updateStats(); render();
+      alert(`Imported ${owned.size} titles.`);
+    } catch(err) {
+      alert("Import failed: " + err.message);
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
 }
 
 updateStats(); render();
